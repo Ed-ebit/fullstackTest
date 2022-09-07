@@ -17,11 +17,11 @@ app.listen(3002, () => {
 app.get('/', (req, res) => {
     res.status(500).send('Hi')
     // connection.connect();
-    connection.query(
+    console.log(connection.query(
         'SELECT * FROM voteschema.bundeslaender where idbundeslaender = 2', function(err, rows, fields)
     { if (err) console.log('Na toll!\n'+err);
     // res.send('ho');
     // connection.end();
-    })
+    }))
     
 })
