@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 const mysql = require('mysql')
-var connection = mysql.createConnection({
+const connection = mysql.createConnection({
     host : 'localhost',
     user : 'testuser',
     password : 'Pa55w0rd',
@@ -11,17 +11,19 @@ var connection = mysql.createConnection({
 
 
 app.listen(3002, () => {
-    console.log('Server listening on Port 3002!')
+    console.log('Server is listening on Port 3002!')
 })
 
-app.get('/', (req, res) => {
-    res.status(500).send('Hi')
-    // connection.connect();
-    console.log(connection.query(
-        'SELECT * FROM voteschema.bundeslaender where idbundeslaender = 2', function(err, rows, fields)
-    { if (err) console.log('Na toll!\n'+err);
-    // res.send('ho');
-    // connection.end();
-    }))
-    
-})
+module.exports = connection;
+// connection.connect();
+// app.get('/', (req, res) => {
+// connection.query('SELECT * FROM bundeslaender where idbundeslaender = 2', function(err, rows, fields) 
+// {
+//   if (err) throw err;
+
+//   console.log(rows[0]);
+// //   console.log(fields[0]);
+// res.send(rows[0]);
+// });
+// })
+// connection.end();
