@@ -1,5 +1,5 @@
 const express = require ('express');
-const router = express.Router;
+const router = express.Router();
 
 router.get('/datenbankabfrage',(req, res)=> {
     connection.query('SELECT * FROM bundeslaender where idbundeslaender = 2', function(err, rows, fields) 
