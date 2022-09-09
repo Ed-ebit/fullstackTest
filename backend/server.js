@@ -1,6 +1,9 @@
 const express = require('express')
-const app = express()
+const app = express();
 const mysql = require('mysql')
+
+
+
 const connection = mysql.createConnection({
     host : 'localhost',
     user : 'testuser',
@@ -8,7 +11,8 @@ const connection = mysql.createConnection({
     database:'voteschema'
 });
 
-
+app.use(express.json());
+app.use(express.urlencoded());
 
 app.listen(3002, () => {
     console.log('Server is listening on Port 3002!')
