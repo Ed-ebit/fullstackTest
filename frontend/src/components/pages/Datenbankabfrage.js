@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import {Link} from 'react-router-dom';
+import {React, useEffect, useState} from 'react';
+// import {Link} from 'react-router-dom';
 import '../../App.css';
 
 function Datenbankabfrage () {
@@ -13,6 +13,7 @@ function Datenbankabfrage () {
     const fetchItems = async() => {
         const data = await fetch('/datenbankabfrage');
         const items = await data.json();
+        console.log(data)
         setItems(items);
         console.log(items)
     };
@@ -21,13 +22,13 @@ function Datenbankabfrage () {
             <div>
                 Mehe
             </div>
-        {
-            items.map( item => {
-                <div>
-                    <p>{item}</p>
-                </div>
-            })
-        }
+            <div>
+                {Object.keys(items).map((key) => {
+                    return(
+                        <p>{key}: {items[key]}</p>
+                    )
+                })}
+            </div>
         </section>
     );
 }

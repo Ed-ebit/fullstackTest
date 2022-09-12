@@ -1,5 +1,14 @@
 const express = require ('express');
 const router = express.Router();
+const mysql = require('mysql');
+
+
+const connection = mysql.createConnection({
+  host : 'localhost',
+  user : 'testuser',
+  password : 'Pa55w0rd',
+  database:'voteschema'
+});
 
 router.get('/datenbankabfrage',(req, res)=> {
     connection.query('SELECT * FROM bundeslaender where idbundeslaender = 2', function(err, rows, fields) 
@@ -15,6 +24,10 @@ res.send(rows[0]);
 
 router.post('/addData', (req, res) => {
     res.end('Not Implemented yet!');
+})
+
+router.get('/', (req, res) => {
+    res.send('Server running')
 })
 
 module.exports = router;

@@ -1,33 +1,26 @@
-const express = require('express')
+const express = require('express');
 const app = express();
-const mysql = require('mysql')
+const routesHandler = require ('./routes/handler');
 
+app.use('/', routesHandler);
+// app.use(express.json());
+// app.use(express.urlencoded());
 
+// const connection = mysql.createConnection({
+//     host : 'localhost',
+//     user : 'testuser',
+//     password : 'Pa55w0rd',
+//     database:'voteschema'
+// });
 
-const connection = mysql.createConnection({
-    host : 'localhost',
-    user : 'testuser',
-    password : 'Pa55w0rd',
-    database:'voteschema'
-});
-
-app.use(express.json());
-app.use(express.urlencoded());
-
-app.listen(3002, () => {
-    console.log('Server is listening on Port 3002!')
+app.listen(5000, () => {
+    console.log('Server is listening on Port 5000!')
 })
 
-module.exports = connection;
-// connection.connect();
-// app.get('/', (req, res) => {
-// connection.query('SELECT * FROM bundeslaender where idbundeslaender = 2', function(err, rows, fields) 
-// {
-//   if (err) throw err;
 
-//   console.log(rows[0]);
-// //   console.log(fields[0]);
-// res.send(rows[0]);
-// });
-// })
-// connection.end();
+
+
+
+
+// module.exports = connection;
+
