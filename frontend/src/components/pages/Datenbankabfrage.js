@@ -1,6 +1,7 @@
 import {React, useEffect, useState} from 'react';
 // import {Link} from 'react-router-dom';
-import '../../App.css';
+import 'antd/dist/antd.css';
+import Dropdown from '../Dropdown';
 
 function Datenbankabfrage () {
 
@@ -17,11 +18,11 @@ function Datenbankabfrage () {
         setItems(items);
         console.log(items)
     };
+
+    
     return (
         <section>
-            <div>
-                Mehe
-            </div>
+            <Dropdown/>
             <div>
                 {Object.keys(items).map((key) => {
                     return(
