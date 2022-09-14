@@ -12,7 +12,7 @@ function Datenbankabfrage () {
     const [items, setItems] = useState([]);
 
     const fetchItems = async() => {
-        const data = await fetch('/datenbankabfrage');
+        const data = await fetch('/datenbankabfrage'); // hier prog für mögliche abfragen des Dropdowns! - FE 'zieht' sich die Daten die es wünscht!
         const items = await data.json();
         console.log(data)
         setItems(items);

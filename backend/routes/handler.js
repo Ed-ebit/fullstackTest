@@ -2,7 +2,6 @@ const express = require ('express');
 const router = express.Router();
 const mysql = require('mysql');
 
-
 const connection = mysql.createConnection({
   host : 'localhost',
   user : 'testuser',
@@ -11,7 +10,7 @@ const connection = mysql.createConnection({
 });
 
 router.get('/datenbankabfrage',(req, res)=> {
-    connection.query('SELECT * FROM bundeslaender where idbundeslaender = 2', function(err, rows, fields) 
+    connection.query('SELECT * FROM bundeslaender where idbundeslaender ='+{dropdownKey}, function(err, rows, fields) 
 {
   if (err) throw err;
 
