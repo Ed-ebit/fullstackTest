@@ -6,7 +6,7 @@ import 'antd/dist/antd.css';
 
 
 const onClick = ({ key }) => {
-    message.info(`Click on item ${key}`);
+    message.info(`Click on ${key}`);
   };
   
   const menu = (
@@ -14,8 +14,8 @@ const onClick = ({ key }) => {
       onClick={onClick}
       items={[
         {
-          label: '1st menu item',
-          key: '1',
+          label: '{blKey}',
+          key: '{blKey}',
         },
         {
           label: '2nd menu item',
