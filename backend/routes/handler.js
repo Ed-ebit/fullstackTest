@@ -9,17 +9,17 @@ const connection = mysql.createConnection({
   database:'voteschema'
 });
 
-router.get('/datenbankabfrage',(req, res)=> {
-    connection.query('SELECT * FROM bundeslaender where idbundeslaender = 2', function(err, rows, fields) 
-{
-  if (err) throw err;
+// router.get('/datenbankabfrage',(req, res)=> {
+//     connection.query('SELECT * FROM bundeslaender where idbundeslaender = 2', function(err, rows, fields) 
+// {
+//   if (err) throw err;
 
-  console.log(rows[0]);
-//   console.log(fields[0]);
-res.send(rows[0]);
-// res.end(JSON.stringify(str));
-});
-})
+//   console.log(rows[0]);
+// //   console.log(fields[0]);
+// res.send(rows[0]);
+// // res.end(JSON.stringify(str));
+// });
+// })
 
 router.get('/datenbankabfrage/:item',(req, res)=> {
   // console.log(req.params.item);
