@@ -5,12 +5,15 @@ import { Dropdown, Menu, message, Space } from 'antd';
 import 'antd/dist/antd.css';
 
 
+// const chosenCountry = null;
 const onClick = ({ key }) => {
-  message.info(`Click on ${key}`);
+  message.info(`${key}`);
+  // chosenCountry = key;
 };
+// exports.module = chosenCountry
+
 
 function GetMenuCountries () {
-
 
   useEffect( () => {
       fetchCountries();
@@ -21,45 +24,17 @@ function GetMenuCountries () {
   const fetchCountries = async() => {
       const data = await fetch('/datenbankabfrage/bundeslaender_name'); // hier prog für mögliche abfragen des Dropdowns! - FE 'zieht' sich die Daten die es wünscht!
       const countries = await data.json();
-      console.log(data)
-      // setCountries(countries);
-      // console.log(countries)
-      // console.log(test)
-      const countryArray = countries.map(country => country.bundeslaender_name);
+      const countryArray = countries.map(country => 
+        <Menu.Item key = {country.bundeslaender_name}>{country.bundeslaender_name}</Menu.Item>)
       console.log(countryArray)
-
+      setCountries(countryArray)
   };
+  
  return (
     <Menu
       onClick={onClick}
-      // items = {countries.bundeslaender_name}
-      items = {countryArray}
-      // items = {Object.keys(countries).map((key) => {return(
-      // {[{label: countries[key], key: countries[key]},]})})} 
-      
-      // {countries.forEach(elements => {
-      //   {label: {elements.key}}
-      //   {label: {elements.key}}
-
-      // })}
-      // items={[
-      //   {
-      //     label: '{blKey}',
-      //     key: '{blKey}',
-      //   },
-      //   {
-      //     label: '2nd menu item',
-      //     key: '2',
-      //   },
-      //   {
-      //     label: '3rd menu item',
-      //     key: '3',
-      //   },
-      // ]}
-            // {Object.keys(countries).map((key) => {return(
-      // <option key={countries[key]} value={countries[key]}>x</option>)})}
      >
-
+      {countries}
     </Menu>
   );
 }

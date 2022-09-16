@@ -1,7 +1,7 @@
 import {React, useEffect, useState} from 'react';
 // import {Link} from 'react-router-dom';
 import 'antd/dist/antd.css';
-import Dropdown from '../Dropdown';
+import Dropdown, {chosenCountry} from '../Dropdown';
 
 function Datenbankabfrage () {
 
@@ -14,9 +14,9 @@ function Datenbankabfrage () {
     const fetchItems = async() => {
         const data = await fetch('/datenbankabfrage'); // hier prog für mögliche abfragen des Dropdowns! - FE 'zieht' sich die Daten die es wünscht!
         const items = await data.json();
-        console.log(data)
+        // console.log(data)
         setItems(items);
-        console.log(items)
+        // console.log(items)
     };
 
     
