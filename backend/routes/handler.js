@@ -27,7 +27,7 @@ router.get('/datenbankabfrage/:item',(req, res)=> {
   console.log(item);
   connection.query('SELECT '+item+' FROM bundeslaender', function(err, rows, fields) 
 {
-if (err) throw err;
+if (err) console.log('Fehler SQL-Abfrage');
 
 console.log(rows[0]);
 //   console.log(fields[0]);

@@ -5,12 +5,10 @@ import { Dropdown, Menu, message, Space } from 'antd';
 import 'antd/dist/antd.css';
 
 
-// const chosenCountry = null;
 const onClick = ({ key }) => {
   message.info(`${key}`);
-  // chosenCountry = key;
+  // LoadClickedItem(key);
 };
-// exports.module = chosenCountry
 
 
 function GetMenuCountries () {
@@ -40,13 +38,14 @@ function GetMenuCountries () {
 }
   const App = () => (
     <Dropdown overlay={GetMenuCountries()}>
-      <a onClick={(e) => e.preventDefault()}>
+      {/* <a onClick={(e) => e.preventDefault()}> */}
         <Space>
           Hover me, Click menu item
           <DownOutlined />
         </Space>
-      </a>
+      {/* </a> */}
     </Dropdown>
+    
   );
   
   export default App;
