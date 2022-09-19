@@ -28,12 +28,12 @@ router.get('/datenbankabfrage/:item',(req, res)=> {
   connection.query('SELECT '+item+' FROM bundeslaender', function(err, rows, fields) 
 {
 if (err) console.log('Fehler SQL-Abfrage');
-
+else{
 console.log(rows[0]);
 //   console.log(fields[0]);
 res.send(rows);
 // res.end(JSON.stringify(str));
-});
+}});
 })
 
 router.post('/addData', (req, res) => {

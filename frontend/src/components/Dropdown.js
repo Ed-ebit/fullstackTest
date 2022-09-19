@@ -5,17 +5,35 @@ import { Dropdown, Menu, message, Space } from 'antd';
 import 'antd/dist/antd.css';
 
 
-const onClick = ({ key }) => {
-  message.info(`${key}`);
-  // LoadClickedItem(key);
-};
+
+// function SetClickedItem(key){
+//   return(key)
+// }
+
+// const onClick = ({ key }) => {
+//   message.info(`${key}`);
+//    console.log (key)
+//   // chosenCountry(key)
+//   // export const chosenCountry = `${key}`;
+//   // SetClickedItem(key);
+// };
+// export const chosenCountry = function SetChosenCountry(key){
+//   return(`${key}`)
+// }
 
 
 function GetMenuCountries () {
+  const onClick = ({ key }) => {
+    message.info(`${key}`);
+     console.log (key)
+    // chosenCountry(key)
+    // export const chosenCountry = `${key}`;
+    // SetClickedItem(key);
+  };
 
   useEffect( () => {
       fetchCountries();
-  }, []);
+  }, );
 
   const [countries, setCountries] = useState([]);
 
@@ -24,7 +42,7 @@ function GetMenuCountries () {
       const countries = await data.json();
       const countryArray = countries.map(country => 
         <Menu.Item key = {country.bundeslaender_name}>{country.bundeslaender_name}</Menu.Item>)
-      console.log(countryArray)
+      // console.log(countryArray)
       setCountries(countryArray)
   };
   

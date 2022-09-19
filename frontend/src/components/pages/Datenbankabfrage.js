@@ -4,21 +4,21 @@ import 'antd/dist/antd.css';
 import Dropdown from '../Dropdown';
 
 function Datenbankabfrage () {
-    console.log(Dropdown.key)
+    // console.log(Dropdown.chosenCountry)
     
 
     useEffect( () => {
         fetchItems();
-    }, []);
+    }, []); 
 
     const [items, setItems] = useState([]);
 
     const fetchItems = async() => {
         const data = await fetch('/datenbankabfrage/'); // hier prog für mögliche abfragen des Dropdowns! - FE 'zieht' sich die Daten die es wünscht!
         const items = await data.json();
-        // console.log(data)
-        setItems(items);
-        // console.log(items)
+         console.log(data)
+        setItems(data);
+         console.log(items) 
     };
 
     
