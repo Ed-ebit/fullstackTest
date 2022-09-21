@@ -42,13 +42,24 @@ function GetMenuItems (menu) {
       const data = await fetch(`/datenbankabfrage/${menu}`); // hier prog für mögliche abfragen des Dropdowns! - FE 'zieht' sich die Daten die es wünscht!
       const items = await data.json();
       console.log(items)
-      const itemsArray = items.map((item) => {
-        // let x = menu.toString();
-         console.log(item);
-         console.log(items.array);
+      const itemsArray = Object.values(items).map((value) => {
+        console.log(value[menu]);
+        return(
+        <Menu.Item key = {value[menu]}>{value[menu]}</Menu.Item>
+        )
+      //   console.log();
+        // values.map((value) =>(
+        //   <Menu.Item key = {value}>{value}</Menu.Item>
+        // )) -- kein array, daher kein map möglich
         
-        <Menu.Item key = {menu}>{menu}</Menu.Item>})
-      // console.log(countryArray)
+        
+        })
+      // const itemsArray = items.map((item) => {
+        
+      //    console.log(item);
+        
+      //   <Menu.Item key = {item[menu]}>x</Menu.Item>})
+      //   console.log(itemsArray)
       setItems(itemsArray)
   };
   
