@@ -7,31 +7,32 @@ function Datenbankabfrage () {
     // console.log(Dropdown.chosenCountry)
     
 
-    useEffect( () => {
-        fetchItems();
-    }, []); 
+    // useEffect( () => {
+    //     fetchItems();
+    // }, []); 
 
-    const [items, setItems] = useState([]);
+    // const [items, setItems] = useState([]);
 
-    const fetchItems = async() => {
-        const data = await fetch('/datenbankabfrage/'); // hier prog für mögliche abfragen des Dropdowns! - FE 'zieht' sich die Daten die es wünscht!
-        const items = await data.json();
-         console.log(data)
-        setItems(data);
-         console.log(items) 
-    };
+    // const fetchItems = async() => {
+    //     const data = await fetch('/datenbankabfrage/'); // hier prog für mögliche abfragen des Dropdowns! - FE 'zieht' sich die Daten die es wünscht!
+    //     const items = await data.json();
+    //      console.log(data)
+    //     setItems(data);
+    //      console.log(items) 
+    // };
 
     
     return (
         <section>
-            <Dropdown/>
-            <div>
+            <Dropdown menu ='bundeslaender_name' />
+            <Dropdown menu ='Haeuser' />
+            {/* <div>
                 {Object.keys(items).map((key) => {
                     return(
                         <p>{key}: {items[key]}</p>
                     )
                 })}
-            </div>
+            </div> */}
         </section>
     );
 }

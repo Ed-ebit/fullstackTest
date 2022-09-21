@@ -22,7 +22,8 @@ import 'antd/dist/antd.css';
 // }
 
 
-function GetMenuItems () {
+function GetMenuItems (menu) {
+  console.log(menu)
   const onClick = ({ key }) => {
     message.info(`${key}`);
      console.log (key)
@@ -33,15 +34,20 @@ function GetMenuItems () {
 
   useEffect( () => {
       fetchItems();
-  }, );
+  }, []);
 
   const [items, setItems] = useState([]);
 
   const fetchItems = async() => {
-      const data = await fetch('/datenbankabfrage/bundeslaender_name'); // hier prog für mögliche abfragen des Dropdowns! - FE 'zieht' sich die Daten die es wünscht!
+      const data = await fetch(`/datenbankabfrage/${menu}`); // hier prog für mögliche abfragen des Dropdowns! - FE 'zieht' sich die Daten die es wünscht!
       const items = await data.json();
-      const itemsArray = items.map(item => 
-        <Menu.Item key = {item.bundeslaender_name}>{item.bundeslaender_name}</Menu.Item>)
+      console.log(items)
+      const itemsArray = items.map((item) => {
+        // let x = menu.toString();
+         console.log(item);
+         console.log(items.array);
+        
+        <Menu.Item key = {menu}>{menu}</Menu.Item>})
       // console.log(countryArray)
       setItems(itemsArray)
   };
@@ -52,10 +58,10 @@ function GetMenuItems () {
      >
       {items}
     </Menu>
-  );
+ );
 }
-  const App = () => (
-    <Dropdown overlay={GetMenuItems()}>
+  const App = (props) => (
+    <Dropdown overlay={GetMenuItems(props.menu)}>
       {/* <a onClick={(e) => e.preventDefault()}> */}
         <Space>
           Hover me, Click menu item
