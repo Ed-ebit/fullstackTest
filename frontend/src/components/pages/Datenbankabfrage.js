@@ -70,9 +70,9 @@ function GetMenuItems (table, item) {
     
     return (
         <section>
-            <Dropdown defaultValue='Bundesalnd wählen'>
-                {GetMenuItems('bundeslaender','bundeslaender_name')} 
-            </Dropdown>
+            <Select defaultValue='Bundesland wählen'>
+                 {GetMenuItems('bundeslaender','bundeslaender_name')}
+            </Select>
         </section>
     );
 }
