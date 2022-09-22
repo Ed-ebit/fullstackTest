@@ -22,45 +22,39 @@ import 'antd/dist/antd.css';
 // }
 
 
-function GetMenuItems (menu) {
-  console.log(menu)
-  const onClick = ({ key }) => {
-    message.info(`${key}`);
-     console.log (key)
-    // chosenCountry(key)
-    // export const chosenCountry = `${key}`;
-    // SetClickedItem(key);
-  };
+
+function GetMenuItems (table, item) {
+  console.log(item)
 
   useEffect( () => {
       fetchItems();
   }, []);
 
   const [items, setItems] = useState([]);
+  const [activeKey, setActiveKey] = useState(null);
 
   const fetchItems = async() => {
-      const data = await fetch(`/datenbankabfrage/${menu}`); // hier prog für mögliche abfragen des Dropdowns! - FE 'zieht' sich die Daten die es wünscht!
+      const data = await fetch(`/datenbankabfrage/${table}/${item}`); // hier prog für mögliche abfragen des Dropdowns! - FE 'zieht' sich die Daten die es wünscht!
       const items = await data.json();
       console.log(items)
       const itemsArray = Object.values(items).map((value) => {
-        console.log(value[menu]);
+        console.log(value[item]);
         return(
-        <Menu.Item key = {value[menu]}>{value[menu]}</Menu.Item>
+        <Menu.Item key = {value[item]}>{value[item]}</Menu.Item>
         )
-      //   console.log();
-        // values.map((value) =>(
-        //   <Menu.Item key = {value}>{value}</Menu.Item>
-        // )) -- kein array, daher kein map möglich
-        
-        
         })
-      // const itemsArray = items.map((item) => {
-        
-      //    console.log(item);
-        
-      //   <Menu.Item key = {item[menu]}>x</Menu.Item>})
-      //   console.log(itemsArray)
       setItems(itemsArray)
+  };
+useEffect(()=>{
+  console.log(activeKey);
+}, [activeKey]);
+  const onClick = ({ key }) => {
+    message.info(`${key}`);
+     console.log (key)
+     setActiveKey(key);
+    // chosenCountry(key)
+    // export const chosenCountry = `${key}`;
+    // SetClickedItem(key);
   };
   
  return (
@@ -72,10 +66,10 @@ function GetMenuItems (menu) {
  );
 }
   const App = (props) => (
-    <Dropdown overlay={GetMenuItems(props.menu)}>
+    <Dropdown overlay={GetMenuItems(props.table, props.item)}>
       {/* <a onClick={(e) => e.preventDefault()}> */}
         <Space>
-          Hover me, Click menu item
+          Bitte {props.name} wählen
           <DownOutlined />
         </Space>
       {/* </a> */}

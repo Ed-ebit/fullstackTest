@@ -20,12 +20,14 @@ router.get('/datenbankabfrage',(req, res)=> {
 });
 })
 
-router.get('/datenbankabfrage/:item',(req, res)=> {
+router.get('/datenbankabfrage/:table/:item',(req, res)=> {
   // console.log(req.params.item);
   // res.send(200);
    const item = req.params.item;
+   const table = req.params.table;
   console.log(item);
-  connection.query('SELECT '+item+' FROM bundeslaender', function(err, rows, fields) 
+  console.log(table);
+  connection.query('SELECT '+item+' FROM '+table+'', function(err, rows, fields) 
 {
 if (err) console.log('Fehler SQL-Abfrage');
 else{

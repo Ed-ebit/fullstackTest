@@ -5,8 +5,6 @@ import Dropdown from '../Dropdown';
 
 function Datenbankabfrage () {
     // console.log(Dropdown.chosenCountry)
-    
-
     // useEffect( () => {
     //     fetchItems();
     // }, []); 
@@ -24,8 +22,8 @@ function Datenbankabfrage () {
     
     return (
         <section>
-            <Dropdown menu ='bundeslaender_name' />
-            <Dropdown menu ='Haeuser' />
+            <Dropdown name= 'Bundesland' table = 'bundeslaender' item ='bundeslaender_name' />
+            <Dropdown name='Haustyp'table ='haustyp' item='haustyp_name'/>
             {/* <div>
                 {Object.keys(items).map((key) => {
                     return(
