@@ -23,9 +23,10 @@ const {Option} = Select;
 // }
 
 
-  const App = () => (
-      <Select >
-
+  const App = ({children, defaultValue}) => (
+      <Select defaultValue={defaultValue} >
+        // Mapfunction hioer rein: was wenn ich dann mal ein Dropdown ohne Mapfunction haben will?
+        {children}
       </Select>
   );
   
