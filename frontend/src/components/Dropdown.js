@@ -1,19 +1,20 @@
-import {React, useEffect} from 'react';
+import {React, useEffect, useState} from 'react';
 import { Select, message } from 'antd';
 import 'antd/dist/antd.css';
 const {Option} = Select;
-// const onClick = ({ key }) => {
-//   message.info(`${key}`);
-//    console.log (key)
-//   // chosenCountry(key)
-//   // export const chosenCountry = `${key}`;
-//   // SetClickedItem(key);
-// };
+
+function handleChange (key, type) {
+  message.info(`${key}`);
+  console.log (key)
+  console.log (type) // id ist ein Object im gegsatz zu key? why? am namen 'id' liegts nicht...
+  
+ }
+
   const Dropdown = ({children, defaultValue}) => (
-      <Select defaultValue={defaultValue} >
-         {children.map((curr) =>{ 
+      <Select onChange={handleChange} defaultValue={defaultValue} >
+          {children.map((curr) =>{ 
             return(        
-              <Option key= '1' value = {Object.values(curr)[0]}>{Object.values(curr)[0]}</Option>
+              <Option type={Object.keys(curr)[0]} key={Object.values(curr)[0]}/>
             )       
           })}
       </Select>

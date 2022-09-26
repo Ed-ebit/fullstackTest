@@ -5,9 +5,9 @@ import Dropdown from '../Dropdown';
 import {GetCountries} from '../../Queries/GetCountries';
 import {GetHousetypes} from '../../Queries/GetHousetypes';
 
+
 function Datenbankabfrage () {
-
-
+    
     const [countries, setCountries] = useState([]);
     const [housetypes, setHousetypes] = useState([]);
     
