@@ -1,9 +1,4 @@
-import React, {useState} from 'react';
-
-export const FetchCountries = 
-
-    async() => {
-    await (await fetch('/datenbankabfrage/bundeslaender/bundeslaender_name')).json(); 
-
-}
-// useeffect hierein
+export const GetCountries = async() => {
+    const data = await fetch('/datenbankabfrage/bundeslaender/bundeslaender_name'); 
+    return await data.json(); 
+};

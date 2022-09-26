@@ -1,41 +1,28 @@
-import {React, useEffect, useState, useRef} from 'react';
-// import {Link} from 'react-router-dom';
-import { Menu, message, Space, Select } from 'antd';
+import {React, useEffect, useState} from 'react';
+import { Select, message } from 'antd';
 import 'antd/dist/antd.css';
 import Dropdown from '../Dropdown';
-import {FetchCountries} from '../../Queries/GetCountries';
-const {Option} = Select;
+import {GetCountries} from '../../Queries/GetCountries';
+import {GetHousetypes} from '../../Queries/GetHousetypes';
 
 function Datenbankabfrage () {
-  
-    
-  
+
+
     const [countries, setCountries] = useState([]);
-    // const [activeKey, setActiveKey] = useState(null);
+    const [housetypes, setHousetypes] = useState([]);
     
-    useEffect( () => {
-        setCountries(async () => {await FetchCountries()});
+    useEffect(() => {
+        (async () => {
+            setCountries( await GetCountries());
+            setHousetypes( await GetHousetypes());
+        })()//wtf machen die letzten runden klammern da???
     }, [] );
-    console.log(countries)
-    // const bla = async () => {await FetchCountries()};
-    // console.log(countries)
-    // - auch async - oder in dropdown? (nächste zeile)
-    const countriesArray = Object.values(countries).map((value)  => {
-        console.log(value['bundesland_name']);
-        return(
-        <Option value = {value['bundesland_name']}>{value['bundesland_name']}</Option>
-        )
-        })
-    // nächste Zeile auch Async?
-    setCountries(countriesArray)
-     console.log(countriesArray)
-  
-    
+    console.log(Object.keys(countries))
+
     return (
         <section>
-            <Dropdown defaultValue='Bundesland wählen'>
-                 {countriesArray}
-            </Dropdown>
+            <Dropdown defaultValue='Bundesland wählen' children={countries}/>
+            <Dropdown defaultValue='Haustyp wählen' children={housetypes}/>
         </section>
     );
 }
