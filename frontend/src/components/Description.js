@@ -1,11 +1,13 @@
 import { Descriptions } from 'antd';
 import React from 'react';
 
-const Description = () => (
-  <Descriptions title="Info">
-    <Descriptions.Item label="Bundesland">Zhou Maomao</Descriptions.Item>
-    <Descriptions.Item label="Regeln">1810000000</Descriptions.Item>
-    <Descriptions.Item label="Erläuterungen">OFF heisst: Ordentlich Frohflocken</Descriptions.Item>
+const Description = ({items}) => (
+  <Descriptions>
+    { items.map(({ label, value }) => 
+      <Descriptions.Item label={ label }>
+        { value }
+      </Descriptions.Item> 
+    )}
   </Descriptions>
 );
 
