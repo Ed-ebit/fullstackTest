@@ -2,7 +2,8 @@ import {React, useEffect, useState } from 'react';
 import {  message } from 'antd';
 import 'antd/dist/antd.css';
 import Dropdown from '../Dropdown';
-import InputNumber from '../InputNumber';
+import InputBasicNumber from '../InputBasicNumber';
+import InputPreciseNumber from '../InputPreciseNumber';
 import Description from '../Description';
 import {GetCountries} from '../../Queries/GetCountries';
 import {GetHousetypes} from '../../Queries/GetHousetypes';
@@ -64,6 +65,17 @@ function Datenbankabfrage () {
                     })
                 )}
             />
+
+            <Description items={[
+                { label: 'Bundesland', value: countryRules.bundeslaender_name || 'Bitte Bundesland wählen' },
+                { label: 'Erläuterung', value: countryRules.bundeslaender_regeln || 'Bitte Bundesland wählen'},
+            ]}/>
+            <div>
+            <p>Benötigter Anteil der GF</p>
+            <InputBasicNumber value={countryRules.anteil_der_gf_numerator || 0}/>
+            <span> / </span>
+            <InputBasicNumber value={countryRules.anteil_der_gf_denominator || 0}/>
+            </div>
             <Dropdown 
                 onChange={handleOnChange('houseType')} 
                 defaultValue='Haustyp wählen' 
@@ -74,15 +86,10 @@ function Datenbankabfrage () {
                     })
                 )}
             />
-            <Description items={[
-                { label: 'Bundesland', value: countryRules.bundeslaender_name || 'Bitte Bundesland wählen' },
-                { label: 'Erläuterung', value: countryRules.bundeslaender_regeln || 'Bitte Bundesland wählen'},
-            ]}/>
             <div>
-            <p>Benötigter Anteil der GF</p>
-            <InputNumber/>
-            <span>/</span>
-            <InputNumber/>
+            <p>Maße Haus</p>
+            <InputPreciseNumber value={countryRules.anteil_der_gf_numerator || 0}/>
+            <InputPreciseNumber value={countryRules.anteil_der_gf_denominator || 0}/>
             </div>
         </section>
     );
