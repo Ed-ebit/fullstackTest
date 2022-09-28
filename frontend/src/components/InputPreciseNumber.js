@@ -1,22 +1,20 @@
 import { InputNumber as InputPreciseNumber } from 'antd';
 import React from 'react';
 
-const onChange = (value) => {
-  console.log('changed', value);
-};
 
-const inputPreciseNumber = () => (
-  <inputPreciseNumber
+
+const InputNumber = ({value}) => (
+  <InputPreciseNumber
     style={{
       width: 200,
     }}
+    value={value}
     defaultValue="1"
     min="0"
-    max="10"
-    step="0.00000000000001"
-    onChange={onChange}
+    max="10000"
+    step="0.0001"
     stringMode
   />
 );
 
-export default InputPreciseNumber;
+export default InputNumber;

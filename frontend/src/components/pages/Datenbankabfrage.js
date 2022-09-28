@@ -88,8 +88,9 @@ function Datenbankabfrage () {
             />
             <div>
             <p>Maße Haus</p>
-            <InputPreciseNumber value={countryRules.anteil_der_gf_numerator || 0}/>
-            <InputPreciseNumber value={countryRules.anteil_der_gf_denominator || 0}/>
+            <span>Länge (m): </span><InputPreciseNumber value={houseTypeRules.haustyp_laenge || ''}/>
+            <span>Breite (m): </span><InputPreciseNumber value={houseTypeRules.haustyp_breite || ''}/>
+            <span>Dachneigung (m): </span><InputPreciseNumber value={houseTypeRules.haustyp_dachneigung || ''}/><span>°</span>
             </div>
         </section>
     );
