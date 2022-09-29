@@ -29,7 +29,7 @@ window.addEventListener('resize', showButton);
             <nav className="navbar">
                 <div className="navbar-container">
                     <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
-                        VoTe <HeatMapOutlined style={{color: "green"}} />
+                        VoTe <HeatMapOutlined style={{color: "white"}} />
                     </Link>
                     <div className="menu-icon" onClick={handleClick}>
                             {click ? <DoubleRightOutlined /> : <DoubleLeftOutlined />}

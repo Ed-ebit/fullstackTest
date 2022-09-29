@@ -3,17 +3,17 @@ import React from 'react';
 
 
 
-const InputNumber = ({value}) => (
+const InputNumber = ({value, onChange, max, step}) => (
   <InputPreciseNumber
     style={{
       width: 200,
     }}
     value={value}
-    defaultValue="1"
     min="0"
-    max="10000"
-    step="0.0001"
+    max={max || "10000"}
+    step={step|| "0.0001"}
     stringMode
+    onChange={onChange}
   />
 );
 
