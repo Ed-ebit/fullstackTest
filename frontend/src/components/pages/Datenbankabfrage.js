@@ -15,9 +15,13 @@ import { awesomeCalc } from '../../Calculations/AwesomeCalc';
 
 function Datenbankabfrage () {
     const [chosenObject, setchosenObject] = useState({ country: '', houseType: ''});
-    const [inputValues, setInputValues] = useState(
-        { numerator: 0, denominator: 0, length: '', width: '', pitch: ''}
-        );
+    const [inputValues, setInputValues] = useState({ 
+        numerator: 0, 
+        denominator: 0, 
+        length: '', 
+        width: '', 
+        pitch: ''
+    });
     const [countries, setCountries] = useState([]);
     const [housetypes, setHousetypes] = useState([]);
     const [houseTypeRules, setHouseTypeRules] = useState({});
@@ -56,14 +60,28 @@ function Datenbankabfrage () {
     useEffect( ()=> {
         if (chosenObject.country === '') { return; }
         (async () => {
-            setCountryRules( await GetCountryRulesByCountry(chosenObject.country))
+            const rules = await GetCountryRulesByCountry(chosenObject.country);
+            setCountryRules( rules );
+            setInputValues({ 
+                ...inputValues,
+                numerator: rules.anteil_der_gf_numerator,
+                denominator: rules.anteil_der_gf_denominator
+            })
+            // setInputValues(countryRules)// !!!!!!!!!!
         })()
     }, [chosenObject.country])
 
     useEffect( ()=> {
         if (chosenObject.houseType === '') { return; }
         (async () => {
-            setHouseTypeRules( await GetHouseTypeRulesByHouseType(chosenObject.houseType))
+            const rules = await GetHouseTypeRulesByHouseType(chosenObject.houseType)
+            setHouseTypeRules( rules);
+            setInputValues({ 
+                ...inputValues,
+                length: rules.haustyp_laenge,
+                width: rules.haustyp_breite,
+                pitch: rules.haustyp_dachneigung
+            })
         })()
     }, [chosenObject.houseType])
 
@@ -91,9 +109,9 @@ function Datenbankabfrage () {
             ]}/>
             <div>
             <p>Benötigter Anteil der GF</p>
-            <InputBasicNumber onChange={handleInputValues('numerator')} value={inputValues.numerator || countryRules.anteil_der_gf_numerator}/>
+            <InputBasicNumber onChange={handleInputValues('numerator')} value={inputValues.numerator}/>
             <span> / </span>
-            <InputBasicNumber onChange={handleInputValues('denominator')} value={inputValues.denominator || countryRules.anteil_der_gf_denominator}/>
+            <InputBasicNumber onChange={handleInputValues('denominator')} value={inputValues.denominator}/>
             </div>
             <Dropdown 
                 onChange={handleOnChange('houseType')} 
@@ -107,9 +125,9 @@ function Datenbankabfrage () {
             />
             <div>
             <p>Maße Haus {chosenObject.houseType || '(Bitte Haustyp wählen)'}:</p>
-            <span>Länge (m): </span><InputPreciseNumber onChange={handleInputValues('length')} value={inputValues.length || houseTypeRules.haustyp_laenge }/>
-            <span>Breite (m): </span><InputPreciseNumber onChange={handleInputValues('width')} value={inputValues.width || houseTypeRules.haustyp_breite }/>
-            <span>Dachneigung : </span><InputPreciseNumber max="89" step="0.1" onChange={handleInputValues('pitch')} value={inputValues.pitch || houseTypeRules.haustyp_dachneigung }/><span>°</span>
+            <span>Länge (m): </span><InputPreciseNumber onChange={handleInputValues('length')} value={inputValues.length}/>
+            <span>Breite (m): </span><InputPreciseNumber onChange={handleInputValues('width')} value={inputValues.width}/>
+            <span>Dachneigung : </span><InputPreciseNumber max="89" step="0.1" onChange={handleInputValues('pitch')} value={inputValues.pitch}/><span>°</span>
             </div>
             <Button onClick={onSubmit}>Berechnen</Button>
             {/* Achtung quick and dirty: */}
