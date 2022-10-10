@@ -24,30 +24,22 @@ function Datenbankabfrage () {
     });
     const [countries, setCountries] = useState([]);
     const [housetypes, setHousetypes] = useState([]);
-    const [houseTypeRules, setHouseTypeRules] = useState({});
     const [countryRules, setCountryRules] = useState({});
     const [results, setResults] = useState({});
 
 
     const handleOnChange = (chosenType) => (key) => {
         message.info(`${key}`);
-        console.log (key)
         setchosenObject({ ...chosenObject, [chosenType]: key });
     }
 
     const handleInputValues = (inputType) => (key) => {
         message.info(`${key}`);
-        console.log (key)
         setInputValues({ ...inputValues, [inputType]: key });
     }
     const onSubmit = () => {
-        console.log (inputValues)
-        console.log (Object.values(inputValues))
-        console.log(awesomeCalc(Object.values(inputValues)))
-        console.log(Object.keys(awesomeCalc(Object.values(inputValues))))
         setResults(awesomeCalc(Object.values(inputValues)))
     }
-    console.log (chosenObject)
 
 
     useEffect(() => {
@@ -67,7 +59,6 @@ function Datenbankabfrage () {
                 numerator: rules.anteil_der_gf_numerator,
                 denominator: rules.anteil_der_gf_denominator
             })
-            // setInputValues(countryRules)// !!!!!!!!!!
         })()
     }, [chosenObject.country])
 
@@ -75,7 +66,6 @@ function Datenbankabfrage () {
         if (chosenObject.houseType === '') { return; }
         (async () => {
             const rules = await GetHouseTypeRulesByHouseType(chosenObject.houseType)
-            setHouseTypeRules( rules);
             setInputValues({ 
                 ...inputValues,
                 length: rules.haustyp_laenge,
@@ -84,12 +74,7 @@ function Datenbankabfrage () {
             })
         })()
     }, [chosenObject.houseType])
-
-    // useEffect( (inputType)=>(key) =>{
-    //     setInputValues({ ...inputValues, [inputType]: key });
-    // },[chosenObject.houseType]) // Versuch, den State in die Values zu laden, ohne dass OnChange getriggert wurde.
     
-    console.log (inputValues)
     return (
         <section>
             <Dropdown 
